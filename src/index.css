@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #08070b;
+    color: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+  }
+}
+
+/* Override Vite default #root settings to expand full screen */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-inline: none !important;
+  min-height: 100vh !important;
+  display: block !important;
+  text-align: left !important;
+}
+
+/* ── Custom scrollbar — thin gold-tinted ────────────────────────── */
+.custom-scroll,
+.custom-scroll * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(234, 179, 8, 0.35) rgba(255, 255, 255, 0.03);
+}
+.custom-scroll::-webkit-scrollbar          { width: 4px; }
+.custom-scroll::-webkit-scrollbar-track   { background: rgba(255,255,255,0.03); border-radius: 9999px; }
+.custom-scroll::-webkit-scrollbar-thumb   { background: rgba(234,179,8,0.35); border-radius: 9999px; }
+.custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(234,179,8,0.6); }
+
+/* Global page scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(234, 179, 8, 0.25) rgba(255, 255, 255, 0.02);
+}
+html::-webkit-scrollbar          { width: 6px; }
+html::-webkit-scrollbar-track   { background: rgba(255,255,255,0.02); }
+html::-webkit-scrollbar-thumb   { background: rgba(234,179,8,0.25); border-radius: 9999px; }
+html::-webkit-scrollbar-thumb:hover { background: rgba(234,179,8,0.5); }
+
+/* Background grid matching the mockup */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.glow-effect {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.15) 0%, rgba(234, 179, 8, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-effect-left {
+  position: absolute;
+  bottom: -15%;
+  left: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.13) 0%, rgba(234, 179, 8, 0.04) 45%, rgba(234, 179, 8, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-effect-bottom-left {
+  position: absolute;
+  bottom: -5%;
+  left: 5%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.18) 0%, rgba(251, 191, 36, 0.06) 50%, rgba(234, 179, 8, 0) 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0%   { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1;   transform: scale(1.12); }
+}
+
+.glow-effect-top-left {
+  position: absolute;
+  top: -5%;
+  left: 5%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.16) 0%, rgba(251, 191, 36, 0.05) 50%, rgba(234, 179, 8, 0) 70%);
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 6s ease-in-out infinite alternate-reverse;
+}
+
+/* Bottom-right corner glow */
+.glow-effect-bottom-right {
+  position: absolute;
+  bottom: -5%;
+  right: 5%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.15) 0%, rgba(251, 191, 36, 0.05) 50%, rgba(234, 179, 8, 0) 70%);
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 7s ease-in-out infinite alternate;
+}
+
+/* Top-center glow */
+.glow-effect-top-center {
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(234, 179, 8, 0.10) 0%, rgba(234, 179, 8, 0.03) 55%, rgba(234, 179, 8, 0) 75%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 8s ease-in-out infinite alternate-reverse;
+}
+
+/* Bottom-center glow */
+.glow-effect-bottom-center {
+  position: absolute;
+  bottom: -8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(234, 179, 8, 0.10) 0%, rgba(234, 179, 8, 0.03) 55%, rgba(234, 179, 8, 0) 75%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 9s ease-in-out infinite alternate;
+}
+
+/* Mid-left edge glow */
+.glow-effect-mid-left {
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(234, 179, 8, 0.09) 0%, rgba(234, 179, 8, 0.02) 55%, rgba(234, 179, 8, 0) 75%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 10s ease-in-out infinite alternate-reverse;
+}
+
+/* Mid-right edge glow */
+.glow-effect-mid-right {
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(234, 179, 8, 0.09) 0%, rgba(234, 179, 8, 0.02) 55%, rgba(234, 179, 8, 0) 75%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 11s ease-in-out infinite alternate;
+}
+
+/* Custom glow borders */
+.glow-border {
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  box-shadow: 0 0 15px rgba(234, 179, 8, 0.15);
+}
+
+.glow-button {
+  transition: all 0.3s ease;
+}
+
+.glow-button:hover {
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.4);
+}
