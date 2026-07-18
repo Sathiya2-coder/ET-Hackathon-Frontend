@@ -113,7 +113,7 @@ function App() {
 
   // Refresh graph elements and history list from backend
   const fetchGraphAndHistory = () => {
-    fetch('http://localhost:5000/api/graph')
+    fetch('https://et-hackathon-backend.vercel.app/api/graph')
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (!data) return;
@@ -126,7 +126,7 @@ function App() {
       })
       .catch(console.error);
 
-    fetch('http://localhost:5000/api/history')
+    fetch('https://et-hackathon-backend.vercel.app/api/history')
       .then(r => r.ok ? r.json() : [])
       .then(setDbHistory)
       .catch(console.error);
@@ -143,7 +143,7 @@ function App() {
     if (!pwd) return;
     if (!window.confirm("Are you sure you want to permanently clear all documents, nodes, and relationships from the database?")) return;
     try {
-      const resp = await fetch('http://localhost:5000/api/graph/clear', { 
+      const resp = await fetch('https://et-hackathon-backend.vercel.app/api/graph/clear', {
         method: 'POST',
         headers: { 'x-admin-password': pwd }
       });
@@ -166,7 +166,7 @@ function App() {
     if (!pwd) return;
     if (!window.confirm(`Are you sure you want to delete "${filename}" and all its extracted nodes and relationships?`)) return;
     try {
-      const resp = await fetch(`http://localhost:5000/api/documents/${docId}`, { 
+      const resp = await fetch(`https://et-hackathon-backend.vercel.app/api/documents/${docId}`, {
         method: 'DELETE',
         headers: { 'x-admin-password': pwd }
       });
@@ -210,7 +210,7 @@ function App() {
     setAnswer('');
     const t0 = Date.now();
     try {
-      const res = await fetch('http://localhost:5000/api/query', {
+      const res = await fetch('https://et-hackathon-backend.vercel.app/api/query', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query })
@@ -243,7 +243,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      const res = await fetch('http://localhost:5000/api/upload/analyze', { 
+      const res = await fetch('https://et-hackathon-backend.vercel.app/api/upload/analyze', {
         method: 'POST', 
         headers: { 'x-admin-password': pwd },
         body: formData 
@@ -264,7 +264,7 @@ function App() {
     if (!previewData) return;
     setConfirming(true);
     try {
-      const res = await fetch('http://localhost:5000/api/upload/confirm', {
+      const res = await fetch('https://et-hackathon-backend.vercel.app/api/upload/confirm', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -286,7 +286,7 @@ function App() {
       if (data.newLinks?.length) setLinks(prev => [...prev, ...data.newLinks]);
 
       // Refresh document history from SQLite
-      fetch('http://localhost:5000/api/history')
+      fetch('https://et-hackathon-backend.vercel.app/api/history')
         .then(r => r.ok ? r.json() : [])
         .then(setDbHistory)
         .catch(console.error);

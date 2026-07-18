@@ -131,7 +131,7 @@ export default function ChatPanel({ onNodesUpdate }) {
     setLoading(true);
 
     try {
-      const resp = await fetch('http://localhost:5000/api/chat', {
+      const resp = await fetch('https://et-hackathon-backend.vercel.app/api/chat', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ message: trimmed, sessionId }),
@@ -172,7 +172,7 @@ export default function ChatPanel({ onNodesUpdate }) {
   const handleNewChat = async () => {
     const newId = uuid();
     // Clear server-side history
-    await fetch('http://localhost:5000/api/chat/clear', {
+    await fetch('https://et-hackathon-backend.vercel.app/api/chat/clear', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({ sessionId }),
