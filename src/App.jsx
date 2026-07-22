@@ -567,7 +567,7 @@ function App() {
               <h3 className="text-sm font-bold tracking-wider uppercase flex items-center space-x-2">
                 <Upload className="w-4 h-4 text-[#eab308]" /><span>Technical Document Ingestion</span>
               </h3>
-              <p className="text-[10px] text-gray-500 mt-0.5">Upload Manuals, P&IDs, and Specs (PDF/TXT). Our industrial AI extracts components & failure relations for you to verify.</p>
+              <p className="text-[10px] text-gray-500 mt-0.5">Upload Manuals, P&IDs, and Specs (PDF/DOCX/TXT). Our industrial AI extracts components & failure relations for you to verify.</p>
             </div>
 
             {/* Drop zone */}
@@ -578,7 +578,7 @@ function App() {
                 dragActive ? 'border-[#eab308] bg-[#eab308]/8' : 'border-[#eab308]/20 hover:border-[#eab308]/45 bg-black/10'
               }`}
             >
-              <input ref={fileInputRef} type="file" accept=".txt,.pdf,.json" onChange={e => e.target.files?.[0] && handleFileUpload(e.target.files[0])} className="hidden" />
+              <input ref={fileInputRef} type="file" accept=".txt,.pdf,.doc,.docx,.json,.csv,.xml" onChange={e => e.target.files?.[0] && handleFileUpload(e.target.files[0])} className="hidden" />
               {uploading ? (
                 <div className="flex flex-col items-center space-y-2">
                   <div className="w-6 h-6 rounded-full border-2 border-t-[#eab308] border-r-[#eab308]/30 border-b-transparent border-l-transparent animate-spin"></div>
@@ -588,7 +588,7 @@ function App() {
                 <div className="flex flex-col items-center space-y-1 text-center px-4">
                   <Upload className="w-6 h-6 text-gray-500 mb-1" />
                   <span className="text-[11px] font-semibold text-gray-300">Drag & drop or click to upload</span>
-                  <span className="text-[9px] text-gray-600">PDF · TXT · JSON — max 10 MB</span>
+                  <span className="text-[9px] text-gray-600">PDF · DOCX · DOC · TXT · JSON — max 10 MB</span>
                 </div>
               )}
             </div>
