@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Send, Trash2, MessageSquare, Zap, User, Bot, Network } from 'lucide-react';
 import AnswerRenderer from './AnswerRenderer';
 
@@ -102,7 +102,7 @@ function ChatBubble({ msg }) {
 }
 
 /* ── Main ChatPanel ───────────────────────────────────────────────── */
-export default function ChatPanel({ onNodesUpdate }) {
+export default function ChatPanel({ onNodesUpdate, nodes = [], links = [] }) {
   const [messages, setMessages]     = useState([]);
   const [input, setInput]           = useState('');
   const [loading, setLoading]       = useState(false);
@@ -183,12 +183,66 @@ export default function ChatPanel({ onNodesUpdate }) {
     inputRef.current?.focus();
   };
 
-  const suggestedQuestions = [
-    'How do open-loop servo feedback limitations cause joint jitter under load?',
-    'What is the root cause of 403 Forbidden errors when loading Spline 3D assets?',
-    'Explain inverse kinematics vs joint-angle control for 6DOF precision positioning.',
-    'How does the Graph RAG engine resolve multi-hop entity relationships across P&IDs?',
-  ];
+  const suggestedQuestions = useMemo(() => {
+    if (!nodes || nodes.length === 0) {
+      return [
+        'How do open-loop servo feedback limitations cause joint jitter under load?',
+        'What is the root cause of 403 Forbidden errors when loading Spline 3D assets?',
+        'Explain inverse kinematics vs joint-angle control for 6DOF precision positioning.',
+        'How does the Graph RAG engine resolve multi-hop entity relationships across P&IDs?',
+      ];
+    }
+
+    const generated = [];
+
+    // 1. Issue -> Solution question
+    const issueNodes = nodes.filter(n => n.type === 'Issue');
+    if (issueNodes.length > 0) {
+      const issue = issueNodes[Math.floor(Math.random() * issueNodes.length)];
+      generated.push(`How is "${issue.label}" resolved in the system?`);
+    }
+
+    // 2. Relationship question using links
+    if (links && links.length > 0) {
+      const link = links[Math.floor(Math.random() * links.length)];
+      const srcNode = nodes.find(n => n.id === link.source || n.label === link.sourceNodeLabel);
+      const tgtNode = nodes.find(n => n.id === link.target || n.label === link.targetNodeLabel);
+      const srcLabel = srcNode ? srcNode.label : (link.sourceNodeLabel || link.source);
+      const tgtLabel = tgtNode ? tgtNode.label : (link.targetNodeLabel || link.target);
+      if (srcLabel && tgtLabel && link.label) {
+        const relVerb = link.label.toLowerCase().replace(/_/g, ' ');
+        generated.push(`How does ${srcLabel} ${relVerb} ${tgtLabel}?`);
+      }
+    }
+
+    // 3. Platform / Technology question
+    const techNodes = nodes.filter(n => ['Platform', 'Technology', 'Component'].includes(n.type));
+    if (techNodes.length > 0) {
+      const tech = techNodes[Math.floor(Math.random() * techNodes.length)];
+      generated.push(`What is the operational role of ${tech.label}?`);
+    }
+
+    // 4. Latest added entity query
+    const lastNode = nodes[nodes.length - 1];
+    if (lastNode && !generated.some(q => q.includes(lastNode.label))) {
+      generated.push(`Explain the specifications and details of ${lastNode.label}.`);
+    }
+
+    // Fallbacks to ensure 4 distinct questions
+    const defaults = [
+      'How do open-loop servo feedback limitations cause joint jitter under load?',
+      'What is the root cause of 403 Forbidden errors when loading Spline 3D assets?',
+      'Explain inverse kinematics vs joint-angle control for 6DOF precision positioning.',
+      'How does the Graph RAG engine resolve multi-hop entity relationships across P&IDs?',
+    ];
+
+    for (const d of defaults) {
+      if (generated.length >= 4) break;
+      if (!generated.includes(d)) generated.push(d);
+    }
+
+    return generated.slice(0, 4);
+  }, [nodes, links]);
 
   return (
     <div className="flex flex-col h-full min-h-[420px]" style={{ maxHeight: '600px' }}>

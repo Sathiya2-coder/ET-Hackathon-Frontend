@@ -504,7 +504,7 @@ function App() {
             className="bg-black/50 border border-[#eab308]/20 rounded-2xl p-4 sm:p-5 flex flex-col flex-grow"
             style={{boxShadow:'0 0 0 1px rgba(234,179,8,0.05), inset 0 1px 0 0 rgba(234,179,8,0.06)'}}
           >
-            <ChatPanel key={chatSessionKey} onNodesUpdate={(nodes, links) => { setRetrievedNodes(nodes); setRetrievedLinks(links); }} />
+            <ChatPanel key={chatSessionKey} nodes={nodes} links={links} onNodesUpdate={(nodes, links) => { setRetrievedNodes(nodes); setRetrievedLinks(links); }} />
           </div>
         </section>
 
