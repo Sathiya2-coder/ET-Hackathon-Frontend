@@ -184,9 +184,10 @@ export default function ChatPanel({ onNodesUpdate }) {
   };
 
   const suggestedQuestions = [
-    'What is CORS error and how is it resolved?',
-    'Tell me about the Spline 3D integration.',
-    'What technologies are in the Knowledge Graph?',
+    'How do open-loop servo feedback limitations cause joint jitter under load?',
+    'What is the root cause of 403 Forbidden errors when loading Spline 3D assets?',
+    'Explain inverse kinematics vs joint-angle control for 6DOF precision positioning.',
+    'How does the Graph RAG engine resolve multi-hop entity relationships across P&IDs?',
   ];
 
   return (

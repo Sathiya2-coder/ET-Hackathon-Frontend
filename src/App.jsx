@@ -471,7 +471,7 @@ function App() {
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between border-b border-[#eab308]/20 relative z-10" style={{boxShadow:'0 1px 0 0 rgba(234,179,8,0.08)'}}>
         <span className="text-lg sm:text-xl font-bold tracking-wider font-mono text-white flex items-center">
-          ASSET & OPERATIONS BRAIN
+          INDUSTRIAL ROBOTICS INTELLIGENCE
           <span className="inline-block w-2 h-2 rounded-full bg-[#eab308] ml-1 animate-pulse"></span>
         </span>
         <div className="flex items-center space-x-1.5 bg-emerald-950/40 border border-emerald-500/30 rounded-full px-2.5 sm:px-4 py-1 sm:py-1.5">
@@ -492,10 +492,10 @@ function App() {
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight uppercase">
               AI-Powered <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400">Asset & Operations Brain</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400">Industrial Robotics Knowledge Hub</span>
             </h1>
             <p className="text-gray-400 text-xs md:text-sm max-w-xl font-light leading-relaxed">
-              Upload documents or ask questions. The engine retrieves relevant Knowledge Graph nodes and combines them with Groq Llama-3 reasoning to answer your query.
+              Upload technical manuals, P&ID diagrams, and maintenance logs. The industrial engine retrieves Knowledge Graph entities and combines them with Llama-3 reasoning to instantly answer operational queries and troubleshoot robotic systems.
             </p>
           </div>
 
@@ -515,7 +515,7 @@ function App() {
           <div className="bg-black/40 border border-[#eab308]/25 rounded-3xl p-4 sm:p-5 flex flex-col h-[260px] sm:h-[340px]" style={{boxShadow:'0 0 0 1px rgba(234,179,8,0.06), 0 4px 24px 0 rgba(234,179,8,0.05)'}}>
             <div className="mb-2">
               <h3 className="text-sm font-bold tracking-wider uppercase flex items-center space-x-2">
-                <Network className="w-4 h-4 text-[#eab308]" /><span>Knowledge Graph Visualizer</span>
+                <Network className="w-4 h-4 text-[#eab308]" /><span>Industrial Entity Map Visualizer</span>
               </h3>
               <p className="text-[10px] text-gray-500 mt-0.5">Drag nodes. Gold glow = RAG match. Colour = node type.</p>
             </div>
@@ -565,9 +565,9 @@ function App() {
           <div className="bg-black/40 border border-[#eab308]/25 rounded-3xl p-4 sm:p-5 flex flex-col h-auto sm:h-[240px] min-h-[180px]" style={{boxShadow:'0 0 0 1px rgba(234,179,8,0.06), 0 4px 24px 0 rgba(234,179,8,0.05)'}}>
             <div className="mb-3">
               <h3 className="text-sm font-bold tracking-wider uppercase flex items-center space-x-2">
-                <Upload className="w-4 h-4 text-[#eab308]" /><span>NLP Graph Uploader</span>
+                <Upload className="w-4 h-4 text-[#eab308]" /><span>Technical Document Ingestion</span>
               </h3>
-              <p className="text-[10px] text-gray-500 mt-0.5">Upload PDFs, P&IDs, TXT — AI extracts entities & relations. You review before storing.</p>
+              <p className="text-[10px] text-gray-500 mt-0.5">Upload Manuals, P&IDs, and Specs (PDF/TXT). Our industrial AI extracts components & failure relations for you to verify.</p>
             </div>
 
             {/* Drop zone */}
@@ -614,7 +614,7 @@ function App() {
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold tracking-wider uppercase flex items-center space-x-2">
                 <Clock className="w-4 h-4 text-[#eab308]" />
-                <span>Graph DB History</span>
+                <span>Asset Database Ledger</span>
               </h3>
               <div className="flex items-center space-x-2">
                 {dbHistory.length > 0 && (
@@ -634,8 +634,8 @@ function App() {
             {dbHistory.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-6 space-y-1 text-center">
                 <Database className="w-6 h-6 text-gray-700 mb-1" />
-                <p className="text-[10px] text-gray-600 font-mono">No documents stored yet.</p>
-                <p className="text-[9px] text-gray-700">Upload a file and confirm to populate the database.</p>
+                <p className="text-[10px] text-gray-600 font-mono">No technical documentation ingested.</p>
+                <p className="text-[9px] text-gray-700">Upload manuals or schematics to build the industrial knowledge base.</p>
               </div>
             ) : (
               <div className="space-y-2 max-h-40 overflow-y-auto pr-1">

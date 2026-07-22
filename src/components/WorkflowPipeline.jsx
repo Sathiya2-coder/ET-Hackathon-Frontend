@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Upload, Cpu, Eye, Database, Search, Zap, CheckCircle } from 'lucide-react';
 
 const steps = [
-  { id: 1, icon: Upload,   color: '#eab308', label: 'Upload Document',  desc: 'Drop a PDF, TXT, P&ID or JSON file. The engine reads its raw content and prepares it for AI analysis.', tag: 'INPUT',       side: 'right' },
+  { id: 1, icon: Upload,   color: '#eab308', label: 'Upload Document',  desc: 'Drop an Industrial Manual, TXT, P&ID or JSON file. The engine reads its raw content and prepares it for AI analysis.', tag: 'INPUT',       side: 'right' },
   { id: 2, icon: Cpu,      color: '#60a5fa', label: 'NLP Extraction',   desc: 'Groq Llama-3 processes the document text and identifies key entities, concepts, and semantic relationships.', tag: 'AI PROCESS',  side: 'left'  },
   { id: 3, icon: Eye,      color: '#a78bfa', label: 'Preview & Review', desc: 'A confirmation modal shows you every extracted node and link before any data is stored.', tag: 'USER REVIEW', side: 'right' },
-  { id: 4, icon: Database, color: '#34d399', label: 'Graph DB Store',   desc: 'Approved entities are permanently saved in SQLite with timestamps, types, and source-document provenance.', tag: 'STORAGE',     side: 'left'  },
+  { id: 4, icon: Database, color: '#34d399', label: 'Graph DB Store',   desc: 'Approved entities (components, assets, systems) are permanently saved in SQLite with timestamps, types, and provenance.', tag: 'STORAGE',     side: 'left'  },
   { id: 5, icon: Search,   color: '#fb923c', label: 'Graph RAG Query',  desc: 'Your question triggers keyword-based retrieval — matching nodes and 1-hop connections form the context.', tag: 'RETRIEVAL',   side: 'right' },
   { id: 6, icon: Zap,      color: '#eab308', label: 'AI Answer',        desc: 'Groq LLM receives the graph context and generates a grounded, transparent answer citing its sources.', tag: 'OUTPUT',      side: 'left'  },
 ];
